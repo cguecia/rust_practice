@@ -1,8 +1,5 @@
-
-
 fn main() {
     let name: &str = "Goku";
-
 
     let a: i32 = 8_9999;
     let b: i32 = 1;
@@ -11,9 +8,6 @@ fn main() {
         let inner: String = String::from("I am Inner scoped");
         println!("Hello from inner scope! {}", inner)
     }
-
-    
-
 
     let result: i32 = add_numbers(a, b);
 
@@ -35,29 +29,53 @@ fn main() {
 
     println!("{}", retuned_name);
 
-    let mut dbz_character: Hero = build_hero(String::from("Gohan"), 1_000_000_000, String::from("Sayian"), true);
+    let mut dbz_character: Hero = build_hero(
+        String::from("Gohan"),
+        1_000_000_000,
+        String::from("Sayian"),
+        true,
+    );
 
     dbz_character.transform(String::from("Super Saiyan"));
-    println!("{} is a {}", dbz_character.name, dbz_character.transformation_state);
+    println!(
+        "{} is a {}",
+        dbz_character.name, dbz_character.transformation_state
+    );
 
     dbz_character.transform(String::from("Super Saiyan 2"));
-    println!("{} is a {}", dbz_character.name, dbz_character.transformation_state);
+    println!(
+        "{} is a {}",
+        dbz_character.name, dbz_character.transformation_state
+    );
 
     dbz_character.transform(String::from("Super Saiyan 2"));
-    println!("{} is a {}", dbz_character.name, dbz_character.transformation_state);
+    println!(
+        "{} is a {}",
+        dbz_character.name, dbz_character.transformation_state
+    );
 
     dbz_character.transform(String::from("Super Saiyan 3"));
-    println!("{} is a {}", dbz_character.name, dbz_character.transformation_state);
+    println!(
+        "{} is a {}",
+        dbz_character.name, dbz_character.transformation_state
+    );
 
     dbz_character.transform(String::from("Beast"));
-    println!("{} is a {}", dbz_character.name, dbz_character.transformation_state);
+    println!(
+        "{} is a {}",
+        dbz_character.name, dbz_character.transformation_state
+    );
 
     dbz_character.show_transformation_state();
 
     dbz_character.show_transformation_state_histroy();
 
-
-    let mut bill = build_hero(String::from("Bill"), 1_000_000_000, String::from("Human"), false);
+    let mut bill = build_hero(
+        String::from("Bill"),
+        1_000_000_000,
+        String::from("Human"),
+        false,
+    );
 
     bill.transform(String::from("Pickle Mode"));
     bill.transform(String::from("Beast Mode"));
@@ -65,56 +83,53 @@ fn main() {
     bill.show_transformation_state();
 
     println!("Bill build current state is {:#?}", &bill)
-
-
-
-
 }
 
 // simple function practice
-fn add_numbers(number_1: i32, number_2: i32) -> i32{
+fn add_numbers(number_1: i32, number_2: i32) -> i32 {
     let result: i32 = number_1 + number_2;
     result
 }
 
 // for loop practice
-fn looper() -> i32{
+fn looper() -> i32 {
     let mut last: i32 = 0;
     for item in 0..100 {
         println!("The num={}", item);
         if item >= 100 {
-         break;
+            break;
         };
-    last = item;}
+        last = item;
+    }
 
     assert_eq!(last, 99);
     last
-
 }
 
 // vector practice
-fn vector_practice(){
+fn vector_practice() {
     let mut nums: Vec<i32> = vec![1, 2, 3]; // mut nums: Vec<i32>
 
     nums.push(4);
     nums.push(5);
     nums.push(6);
 
-    println!("The length of nums is now {}", nums.len()); 
-
+    println!("The length of nums is now {}", nums.len());
 }
 
-fn str_practice(mut name_to_change: String)-> String {
+fn str_practice(mut name_to_change: String) -> String {
     println!("{}", name_to_change);
 
     let ref_name: &String = &name_to_change;
 
-    println!("ref_name={} is a reference to name={}", ref_name, name_to_change);
+    println!(
+        "ref_name={} is a reference to name={}",
+        ref_name, name_to_change
+    );
 
     name_to_change.push_str(" Greeney");
-    
-    name_to_change
 
+    name_to_change
 }
 
 // struct practice
@@ -126,12 +141,11 @@ struct Hero {
     transformation_state: String,
     is_god_tier: bool,
     transformation_state_history: Vec<String>,
-
 }
 
 // build an instance of Hero
 fn build_hero(name: String, power_level: i32, race: String, is_god_tier: bool) -> Hero {
-    Hero{
+    Hero {
         name,
         power_level,
         race,
@@ -139,41 +153,41 @@ fn build_hero(name: String, power_level: i32, race: String, is_god_tier: bool) -
         transformation_state_history: vec![String::from("Base")],
         is_god_tier,
     }
-
 }
 
 // implement practice
 impl Hero {
-    fn transform(&mut self, transformation_state: String){
-
-        if self.transformation_state != transformation_state{
-
+    fn transform(&mut self, transformation_state: String) {
+        if self.transformation_state != transformation_state {
             self.transformation_state = transformation_state;
 
-            self.transformation_state_history.push(self.transformation_state.clone());
+            self.transformation_state_history
+                .push(self.transformation_state.clone());
 
             println!("{} transformed to {}", self.name, self.transformation_state);
-
+        } else {
+            println!(
+                "{} is already in {} state",
+                self.name, self.transformation_state
+            );
         }
-
-     else {
-        println!("{} is already in {} state", self.name, self.transformation_state);
-     }
- 
     }
-    
 }
 
 impl Hero {
-    fn show_transformation_state(&self){
-        println!("The current transformation state: {}", &self.transformation_state)
+    fn show_transformation_state(&self) {
+        println!(
+            "The current transformation state: {}",
+            &self.transformation_state
+        )
     }
-    
 }
 
 impl Hero {
-    fn show_transformation_state_histroy(&self){
-        println!("The current transformation state hisrtory: {:#?}", &self.transformation_state_history)
+    fn show_transformation_state_histroy(&self) {
+        println!(
+            "The current transformation state hisrtory: {:#?}",
+            &self.transformation_state_history
+        )
     }
-    
 }
