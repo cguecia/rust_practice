@@ -82,7 +82,25 @@ fn main() {
 
     bill.show_transformation_state();
 
-    println!("Bill build current state is {:#?}", &bill)
+    println!("Bill build current state is {:#?}", &bill);
+
+    let result = longest(
+        &bill.transformation_state_history,
+        &dbz_character.transformation_state_history,
+    );
+    println!("The longest transformation state ={:#?}", result);
+
+    let v1 = vec![String::from("hello"), String::from("there")];
+    let v2 = vec![String::from("same"), String::from("length")];
+
+    let same_length = longest(&v1, &v2);
+    println!("The longest vec = {:#?}", same_length);
+
+    if let Some(longest_vec) = same_length {
+        println!("The longest vector is: {:?}", longest_vec);
+    } else {
+        println!("The vectors have equal length");
+    }
 }
 
 // simple function practice
@@ -189,5 +207,16 @@ impl Hero {
             "The current transformation state hisrtory: {:#?}",
             &self.transformation_state_history
         )
+    }
+}
+
+// generic lifetime annotations practice with Some
+fn longest<'a>(x: &'a Vec<String>, y: &'a Vec<String>) -> Option<&'a Vec<String>> {
+    if x.len() == y.len() {
+        None
+    } else if x.len() > y.len() {
+        Some(x)
+    } else {
+        Some(y)
     }
 }
