@@ -29,7 +29,7 @@ fn main() {
 
     println!("{}", retuned_name);
 
-    let mut dbz_character: Hero = build_hero(
+    let mut dbz_character = Hero::new(
         String::from("Gohan"),
         1_000_000_000,
         String::from("Sayian"),
@@ -70,7 +70,7 @@ fn main() {
 
     dbz_character.show_transformation_state_histroy();
 
-    let mut bill = build_hero(
+    let mut bill = Hero::new(
         String::from("Bill"),
         1_000_000_000,
         String::from("Human"),
@@ -162,14 +162,16 @@ struct Hero {
 }
 
 // build an instance of Hero
-fn build_hero(name: String, power_level: i32, race: String, is_god_tier: bool) -> Hero {
-    Hero {
-        name,
-        power_level,
-        race,
-        transformation_state: String::from("Base"),
-        transformation_state_history: vec![String::from("Base")],
-        is_god_tier,
+impl Hero {
+    fn new(name: String, power_level: i32, race: String, is_god_tier: bool) -> Hero {
+        Hero {
+            name,
+            power_level,
+            race,
+            transformation_state: String::from("Base"),
+            transformation_state_history: vec![String::from("Base")],
+            is_god_tier,
+        }
     }
 }
 
