@@ -161,7 +161,7 @@ struct Hero {
     transformation_state_history: Vec<String>,
 }
 
-// build an instance of Hero
+// implement practice
 impl Hero {
     fn new(name: String, power_level: i32, race: String, is_god_tier: bool) -> Hero {
         Hero {
@@ -173,10 +173,7 @@ impl Hero {
             is_god_tier,
         }
     }
-}
 
-// implement practice
-impl Hero {
     fn transform(&mut self, transformation_state: String) {
         if self.transformation_state != transformation_state {
             self.transformation_state = transformation_state;
@@ -192,18 +189,14 @@ impl Hero {
             );
         }
     }
-}
 
-impl Hero {
     fn show_transformation_state(&self) {
         println!(
             "The current transformation state: {}",
             &self.transformation_state
         )
     }
-}
 
-impl Hero {
     fn show_transformation_state_histroy(&self) {
         println!(
             "The current transformation state hisrtory: {:#?}",
